@@ -1,0 +1,114 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh}
+.page{min-height:100vh;background:#0a0a0a;overflow:hidden;position:relative}
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,200,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,200,0,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.bg-glow{position:fixed;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,180,0,0.12) 0%,transparent 70%);pointer-events:none}
+.bg-glow2{position:fixed;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,100,0,0.08) 0%,transparent 70%);pointer-events:none}
+.container{max-width:480px;margin:0 auto;padding:2rem 1.5rem;position:relative;z-index:1}
+.badge{display:inline-block;background:#FFB800;color:#0a0a0a;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:1.5rem;animation:fadeDown 0.6s ease both}
+.avatar-wrap{position:relative;width:110px;height:110px;margin:0 auto 1.5rem;animation:fadeDown 0.7s ease both}
+.avatar-ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid #FFB800;animation:spin 8s linear infinite}
+.avatar-ring::before{content:'';position:absolute;top:-4px;left:50%;width:8px;height:8px;background:#FFB800;border-radius:50%;transform:translateX(-50%)}
+.avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);border:3px solid #1a1a1a;display:flex;align-items:center;justify-content:center;font-size:42px;font-family:'Bebas Neue',sans-serif;color:#FFB800;letter-spacing:2px}
+.name{font-family:'Bebas Neue',sans-serif;font-size:46px;letter-spacing:3px;line-height:1;text-align:center;animation:fadeUp 0.7s ease both;animation-delay:0.1s}
+.name span{color:#FFB800}
+.tagline{text-align:center;font-size:13px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin:6px 0 0.5rem;animation:fadeUp 0.7s ease both;animation-delay:0.15s}
+.divider{display:flex;align-items:center;gap:12px;margin:1.2rem 0;animation:fadeUp 0.7s ease both;animation-delay:0.2s}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,184,0,0.4),transparent)}
+.divider-icon{font-size:16px;color:#FFB800}
+.title-card{background:linear-gradient(135deg,rgba(255,184,0,0.1),rgba(255,100,0,0.05));border:1px solid rgba(255,184,0,0.2);border-radius:12px;padding:1.1rem 1.4rem;text-align:center;margin-bottom:1.2rem;animation:fadeUp 0.7s ease both;animation-delay:0.25s}
+.title-main{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#FFB800}
+.title-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:3px;letter-spacing:1.5px;text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1.2rem;animation:fadeUp 0.7s ease both;animation-delay:0.3s}
+.stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:0.9rem 0.5rem;text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#FFB800;letter-spacing:1px}
+.stat-lbl{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.services{margin-bottom:1.2rem;animation:fadeUp 0.7s ease both;animation-delay:0.35s}
+.services-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:10px}
+.service-list{display:flex;flex-wrap:wrap;gap:8px}
+.service-tag{background:rgba(255,184,0,0.08);border:1px solid rgba(255,184,0,0.2);color:rgba(255,255,255,0.75);font-size:12px;padding:5px 12px;border-radius:20px;display:flex;align-items:center;gap:5px}
+.service-tag .dot{width:5px;height:5px;background:#FFB800;border-radius:50%}
+.phone-card{background:linear-gradient(135deg,#FFB800,#FF6B00);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;animation:fadeUp 0.7s ease both;animation-delay:0.4s;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none}
+.phone-card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,184,0,0.3)}
+.phone-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:rgba(0,0,0,0.6);margin-bottom:3px}
+.phone-num{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:#0a0a0a}
+.phone-icon{width:44px;height:44px;background:rgba(0,0,0,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.action-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;animation:fadeUp 0.7s ease both;animation-delay:0.45s}
+.btn{padding:13px;border-radius:10px;text-align:center;font-size:13px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all 0.2s;text-decoration:none;display:block}
+.btn-whatsapp{background:#25D366;border:none;color:#fff}
+.btn-whatsapp:hover{background:#20c25c}
+.btn-call{background:#378ADD;border:none;color:#fff}
+.btn-call:hover{background:#2a6dbf}
+.btn-email{background:rgba(255,184,0,0.12);border:1px solid rgba(255,184,0,0.35);color:#FFB800;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1px;transition:all 0.2s;animation:fadeUp 0.7s ease both;animation-delay:0.5s}
+.btn-email:hover{background:rgba(255,184,0,0.2)}
+.email-text{font-size:12px;color:rgba(255,255,255,0.4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.footer{text-align:center;margin-top:1.5rem;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase;animation:fadeUp 0.7s ease both;animation-delay:0.55s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+</style>
+
+<div class="page">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="bg-glow2"></div>
+  <div class="container">
+    <div style="text-align:center">
+      <div class="badge">&#9889; Digital Marketing Expert</div>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <div class="avatar">DK</div>
+    </div>
+    <div class="name">DEEPAK<br><span>KUMAR</span></div>
+    <div class="tagline">The Business Growth Hacker</div>
+    <div class="divider"><span class="divider-icon">&#9670;</span></div>
+    <div class="title-card">
+      <div class="title-main">&#128200; Business Growth Specialist</div>
+      <div class="title-sub">Scale Your Brand · Drive Results · Dominate Market</div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">7+</div>
+        <div class="stat-lbl">Clients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">FRESHER</div>
+        <div class="stat-lbl">Experience</div>
+      </div>
+    </div>
+    <div class="services">
+      <div class="services-title">Services</div>
+      <div class="service-list">
+        <div class="service-tag"><span class="dot"></span>SEO & SEM</div>
+        <div class="service-tag"><span class="dot"></span>Social Media</div>
+        <div class="service-tag"><span class="dot"></span>Lead Generation</div>
+        <div class="service-tag"><span class="dot"></span>Paid Ads</div>
+        <div class="service-tag"><span class="dot"></span>Brand Strategy</div>
+        <div class="service-tag"><span class="dot"></span>Content Marketing</div>
+      </div>
+    </div>
+    <a class="phone-card" href="tel:+919289530203">
+      <div>
+        <div class="phone-label">Call / WhatsApp</div>
+        <div class="phone-num">9289530203</div>
+      </div>
+      <div class="phone-icon">&#128222;</div>
+    </a>
+    <div class="action-btns">
+      <a class="btn btn-whatsapp" href="https://wa.me/919289530203" target="_blank">&#128172; WhatsApp</a>
+      <a class="btn btn-call" href="tel:+919289530203">&#128222; Call Now</a>
+    </div>
+    <a class="btn-email" href="mailto:deepakk9289530203@gmail.com">
+      <span style="font-size:18px;">&#128231;</span>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#FFB800;">Send Email</div>
+        <div class="email-text">deepakk9289530203@gmail.com</div>
+      </div>
+    </a>
+    <div class="footer">&#9733; Growing Businesses Since Day One &#9733;</div>
+  </div>
+</div>
